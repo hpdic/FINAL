@@ -11,6 +11,7 @@ It is distributed under the MIT license. Please, check the LICENSE file for more
 ### Requirements 
 
 A C++ compiler, the [NTL](https://libntl.org) and [FFTW 3](http://www.fftw.org) libraries.
+* `sudo apt install libfftw3-dev`
 
 ## Run the code
 
