@@ -270,12 +270,16 @@ enum GateType {NAND, AND, OR, XOR, NOT};
 void test_ntruhe_gate_helper(int in1, int in2, const SchemeNTRU& s, GateType g)
 {
     float avg_time = 0.0;
+    float enc_time = 0.0;
     int N_TESTS = (g == NOT ? 30 : 100);
     for (int i = 0; i < N_TESTS; i++)
     {
         Ctxt_NTRU ct_res, ct1, ct2;
+
+        auto start = clock();
         s.encrypt(ct1, in1);
         s.encrypt(ct2, in2);
+        enc_time += float(clock()-start)/CLOCKS_PER_SEC;
         
         if (g == NAND)
         {
@@ -331,6 +335,7 @@ void test_ntruhe_gate_helper(int in1, int in2, const SchemeNTRU& s, GateType g)
 
     }
     cout << "Avg. time: " << avg_time/N_TESTS << endl;
+    cout << "<===HPDIC===> Enc. time: " << enc_time / N_TESTS << endl;
 }
 
 void test_ntru_gate(SchemeNTRU& s, GateType g)
@@ -669,7 +674,7 @@ int main()
     cout << "-------------------------" << endl;
     cout << "LWE tests" << endl;
     SchemeLWE s_lwe;
-    test_lwehe_not(s_lwe);
+    // test_lwehe_not(s_lwe);
     test_lwehe_nand(s_lwe);
     test_lwehe_and(s_lwe);
     test_lwehe_or(s_lwe);
