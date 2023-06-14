@@ -1,3 +1,9 @@
+# HPDIC MOD
+
+The encryption of bits only takes less than 1% time of homomorphic operation (e.g., XOR).
+For example, encryption time is about 0.0003 seconds while XOR takes about 0.05 seconds. 
+Thus there is no need to apply Rache to FINAL.Enc().
+
 # FINAL 
 
 ## Faster FHE instantiated with NTRU and LWE
